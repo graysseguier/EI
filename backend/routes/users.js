@@ -13,6 +13,7 @@ router.post("/new", function (req, res) {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    filmsLiked: req.body.filmsLiked,
   });
   console.log(req.body);
   newUser
@@ -27,6 +28,7 @@ router.post("/new", function (req, res) {
         });
       } else {
         res.status(500).json({ message: "Error while creating the user" });
+        console.log(error)
       }
     });
 });
