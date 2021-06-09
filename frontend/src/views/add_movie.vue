@@ -2,7 +2,7 @@
 <form
   id="app"
   @submit="checkForm"
-  action=""
+  action="http://localhost:3000/movies/new"
   method="post"
 >
 
@@ -63,6 +63,7 @@
 <input type="checkbox" id="37" value="37" v-model="genre">
 <label for="Western">Western</label>
 {{genre}}
+ <input type="number" name="vote_average" v-model.number="vote_average"> Vote Average
   </p>
   <div class="FormDate">
     <input
@@ -80,7 +81,7 @@
       type="number"
       placeholder="yyyy" v-model="year">
   </div>
-
+{{date=String(this.year)+"/"+String(this.month)+"/"+String(this.day)}}
   <p>
     <input
       type="submit"
@@ -97,24 +98,25 @@ export default {
 
   data: function () {
     return {
-      errors:[],
+    errors:[],
     title:null,
     month:null,
     day: null,
     year: null,
     genre: [],
+    vote_average: 0,
+    date: null,
     };
   },
 
   methods: {
-    checkForm:function(e) {
+    checkForm:function() {
       this.errors = [];
       if(!this.title) this.errors.push("title required.");
       if(!this.day) this.errors.push("day required.");
       if(!this.month) this.errors.push("month required.");
       if(!this.year) this.errors.push("year required.");
       if(this.genre.length==0) this.errors.push("genre required");
-      e.preventDefault();
 
     }
   },

@@ -4,14 +4,19 @@ const router = express.Router();
 
 router.get("/", function (req, res) {
   MovieModel.find({}).then(function (movies) {
-    res.json({ users: movies });
+    res.json({ movies: movies });
   });
 });
-
+router.get("/test", function (req, res) {
+  res.json({ title: req.body.title, date: req.body.date });
+});
 router.post("/new", function (req, res) {
   const newMovie = new MovieModel({
     title: req.body.title,
-    date: req.body.date,
+    date: req.body.day,
+    genre_ids: req.body.genre_ids,
+    adult: req.body.adult,
+    vote_average: req.body.vote_average,
   });
   console.log(req.body);
   newMovie
@@ -25,6 +30,7 @@ router.post("/new", function (req, res) {
           message: `Movie with the title "${newMovie.title}" already exists`,
         });
       } else {
+        console.log(error);
         res.status(500).json({ message: "Error while adding the movie" });
       }
     });
