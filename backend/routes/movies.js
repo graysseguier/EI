@@ -11,9 +11,10 @@ router.get("/test", function (req, res) {
   res.json({ title: req.body.title, date: req.body.date });
 });
 router.post("/new", function (req, res) {
+  console.log(req.body);
   const newMovie = new MovieModel({
     title: req.body.title,
-    date: req.body.day,
+    date: req.body.date,
     genre_ids: req.body.genre_ids,
     adult: req.body.adult,
     vote_average: req.body.vote_average,
