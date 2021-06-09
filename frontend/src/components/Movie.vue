@@ -86,10 +86,11 @@ export default {
 .text {
   background-color: #7c8581d8;
   color: white;
-  font-size: 8px;
-  width: 80px;
-  height: 150px;
+  font-size: 20px;
+  width: 220px;
+  height: 380px;
   padding: 20px 32px;
+  position: relative;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }

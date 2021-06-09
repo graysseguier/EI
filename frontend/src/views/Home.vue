@@ -6,17 +6,52 @@
       width="600"
       height="300"
     />
-    <div class="dropdown">
-      <button class="dropbtn">Dropdown</button>
-      <div class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+    <div class="navbar">
+      <a href="#home">Home</a>
+      <a href="#users">Users</a>
+      <DropdownButton name="Genre">
+        <a href="#">Action</a>
+        <a href="#">Adventure</a>
+        <a href="#">Animation</a>
+        <a href="#">Comedy</a>
+        <a href="#">Crime</a>
+        <a href="#">Documentary</a>
+        <a href="#">Drama</a>
+        <a href="#">Family</a>
+        <a href="#">Fantasy</a>
+        <a href="#">History</a>
+        <a href="#">Horror</a>
+        <a href="#">Music</a>
+        <a href="#">Mystery</a>
+        <a href="#">Romance</a>
+        <a href="#">Science Fiction</a>
+        <a href="#">Thriller</a>
+        <a href="#">TV Movie</a>
+        <a href="#">War</a>
+        <a href="#">Western</a>
+      </DropdownButton>
+      <DropdownButton name="Date">
+        <a href="#">2021</a>
+        <a href="#">2020</a>
+        <a href="#">2019</a>
+        <a href="#">Other</a>
+      </DropdownButton>
+      <DropdownButton name="Language">
+        <a href="#">English</a>
+        <a href="#">French</a>
+        <a href="#">Japanese</a>
+        <a href="#">Other</a>
+      </DropdownButton>
+
+      <a href="#About">About</a>
+      <div class="search-container">
+        <form action="/action_page.php">
+          <input type="text" placeholder="Search.." name="search" />
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
       </div>
     </div>
-    <div class="topnav">
-      <input type="text" placeholder="Search .." />
-    </div>
+
     <h1>Welcome to your own online cinema</h1>
     <p>What movie do you want to add?</p>
     <input v-model="movieName" placeholder="Enter movie name" />
@@ -106,8 +141,9 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
+import DropdownButton from "@/components/DropdownButton.vue";
 export default {
-  components: { Movie },
+  components: { Movie, DropdownButton },
   name: "Home",
 
   data: function () {
@@ -184,103 +220,106 @@ a {
 .container {
   flex-direction: column-reverse;
 }
-/* Add a black background color to the top navigation bar */
-.topnav {
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
   overflow: hidden;
-  background-color: #333333;
+  background-color: #333;
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
+.navbar a {
   float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: rgb(112, 110, 110);
-  color: black;
-}
-
-/* Style the "active" element to highlight the current page */
-.topnav a.active {
-  background-color: #2196f3;
+  font-size: 16px;
   color: white;
-}
-
-/* Style the search box inside the navigation bar */
-.topnav input[type="text"] {
-  float: center;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-}
-
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
-  .topnav a,
-  .topnav input[type="text"] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type="text"] {
-    border: 1px solid #ccc;
-  }
-}
-/* Add a black background color to the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
   background-color: #ddd;
-  color: black;
 }
 
-/* Style the "active" element to highlight the current page */
-.topnav a.active {
-  background-color: #2196f3;
-  color: white;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
-
-/* Style the search box inside the navigation bar */
-.topnav input[type="text"] {
+/* SEARCH BAR */
+.topnav .search-container {
   float: right;
+  height: 200px;
+}
+
+.topnav input[type="text"] {
   padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
   border: none;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 6px 10px;
   margin-top: 8px;
   margin-right: 16px;
+  background: #ddd;
   font-size: 17px;
+  border: none;
+  cursor: pointer;
 }
 
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+.topnav .search-container button:hover {
+  background: #ccc;
+}
+
 @media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
   .topnav a,
-  .topnav input[type="text"] {
+  .topnav input[type="text"],
+  .topnav .search-container button {
     float: none;
     display: block;
     text-align: left;
