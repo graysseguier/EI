@@ -62,22 +62,23 @@
 <label for="War">War</label>
 <input type="checkbox" id="37" value="37" v-model="genre">
 <label for="Western">Western</label>
+{{genre}}
   </p>
   <div class="FormDate">
     <input
       class="FormDate__input FormDate__input--day"
       type="number"
-      placeholder="dd">
+      placeholder="dd" v-model="day">
     <span class="FormDate__divider">/</span>
     <input
       class="FormDate__input FormDate__input--month"
       type="number"
-      placeholder="mm">
+      placeholder="mm" v-model="month">
     <span class="FormDate__divider">/</span>
     <input
       class="FormDate__input FormDate__input--year"
       type="number"
-      placeholder="yyyy">
+      placeholder="yyyy" v-model="year">
   </div>
 
   <p>
@@ -97,20 +98,24 @@ export default {
   data: function () {
     return {
       errors:[],
-    name:null,
-    age:null,
-    movie:null,
-    genre: []
+    title:null,
+    month:null,
+    day: null,
+    year: null,
+    genre: [],
     };
   },
 
   methods: {
     checkForm:function(e) {
-      if(this.name && this.age) return true;
       this.errors = [];
-      if(!this.name) this.errors.push("Name required.");
-      if(!this.age) this.errors.push("Age required.");
+      if(!this.title) this.errors.push("title required.");
+      if(!this.day) this.errors.push("day required.");
+      if(!this.month) this.errors.push("month required.");
+      if(!this.year) this.errors.push("year required.");
+      if(this.genre.length==0) this.errors.push("genre required");
       e.preventDefault();
+
     }
   },
 };
