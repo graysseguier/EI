@@ -4,6 +4,7 @@ import Counter from "../views/Counter.vue";
 import Users from "../views/Users.vue";
 import About from "../views/About.vue";
 import add_movie from "../views/add_movie.vue";
+import recommandation from "../views/recommandation.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/add movie",
     name: "Add Movie",
     component: add_movie,
+  },
+  {
+    path: "/recommandation",
+    name: "recommandation",
+    component: recommandation,
   },
 ];
 
