@@ -1,22 +1,22 @@
 <template>
   <br />
   <h1>Recommended movies</h1>
-    
-    <li v-for="user in users" :key="user.email" :user="user">
-        <UsersTable :users="users" />
-        <li v-for="movie in movies" :key="movie.id" :movie="movie">
-            <Movie :movie="movie" />
-        </li>
-    </li>
 
-    <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
-    <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
+  <li v-for="user in users" :key="user.email" :user="user">
+    <UsersTable :users="users" />
+    <ul v-for="movie in movies" :key="movie.id" :movie="movie">
+      <Movie :movie="movie" />
+    </ul>
+  </li>
+
+  <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
+  <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
 
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import UsersTable from "@/components/UsersTable.vue"
+import UsersTable from "@/components/UsersTable.vue";
 
 export default {
   components: { Movie, UsersTable },
@@ -34,24 +34,20 @@ export default {
 
   methods: {
     fetchUsers: function () {
-        axios
-            .get(function () {
-
-            })
-            .then((response) => {
-                this.users = response.data.users;
-                console.log(response.data.users)
-            }) 
-            .catch((error) => {
-                this.usersLoadingError = "An error occured while fetching movies.";
-                console.log(error);
-            })
+      axios
+        .get(function () {})
+        .then((response) => {
+          this.users = response.data.users;
+          console.log(response.data.users);
+        })
+        .catch((error) => {
+          this.usersLoadingError = "An error occured while fetching movies.";
+          console.log(error);
+        });
     },
     fetchMovies: function () {
       axios
-        .get(function () {
-
-        })
+        .get(function () {})
         .then((response) => {
           this.movies = response.data.results;
           console.log(response);
