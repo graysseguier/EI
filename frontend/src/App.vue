@@ -58,7 +58,6 @@
   </div>
 </template>
 <script>
-//import axios from "axios";
 import DropdownButton from "@/components/DropdownButton.vue";
 export default {
   components: { DropdownButton },

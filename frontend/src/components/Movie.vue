@@ -18,12 +18,6 @@
           </div>
         </div>
         <div class="button">
-          <!-- Add icon library -->
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          />
-
           <!-- Use an element to toggle between a like/dislike icon -->
           <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
         </div>
