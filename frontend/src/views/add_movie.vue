@@ -7,25 +7,37 @@
     </ul>
 </p>
 
+
+
+
+
+
+    <input
+      id="title"
+      v-model="title"
+      type="text"
+      name="title"
+    placeholder="Title">
+
   <p>
 
- Vote Average<input type="number" name="vote_average" v-model.number="vote_average"> 
+<input type="number" min="0" max="10" name="vote_average" v-model.number="vote_average" placeholder="Rating"> 
   </p>
   <div class="FormDate">
     <input
       class="FormDate__input FormDate__input--day"
       type="number"
-      placeholder="dd" v-model="day">
+      placeholder="dd" v-model="day" min="1" max="31">
     <span class="FormDate__divider">/</span>
     <input
       class="FormDate__input FormDate__input--month"
       type="number"
-      placeholder="mm" v-model="month">
+      placeholder="mm" v-model="month" min="1" max="12">
     <span class="FormDate__divider">/</span>
     <input
       class="FormDate__input FormDate__input--year"
       type="number"
-      placeholder="yyyy" v-model="year">
+      placeholder="yyyy" v-model="year" min="0">
   </div>
 
 <input type="radio" id="true" value=true v-model="adult">
@@ -33,21 +45,8 @@
 <br>
 <input type="radio" id="false" value=false v-model="adult">
 <label for="two">No</label>
-<br>
-
-
-
-
 
 <section class="genre">
-    <div>
-    <input
-      id="title"
-      v-model="title"
-      type="text"
-      name="title"
-    placeholder="Title">
-    </div>
     <div>
   <article>
     <input type="checkbox" id="28" value="28" v-model="genre_ids"/>
@@ -243,7 +242,7 @@ export default {
     day: null,
     year: null,
     genre_ids: [],
-    vote_average: 0,
+    vote_average: null,
     date: null,
     adult:null,
     };
@@ -296,6 +295,26 @@ export default {
 </script>
 
 <style scoped>
+input[type=text],[type=number] {
+    width:15%;
+    border: none;
+    border-bottom: 2px solid #50bcf2;
+    text-align: center;  
+    margin-top: 13px;
+    margin-bottom: 13px;
+    padding-top: 7px;
+    border-radius: 5px;
+    background-color:transparent;
+    color: white;
+    font-size:20px;
+    font-family: "Courier New", Courier, monospace;
+}
+::placeholder{
+color:white;
+font-size: 20px;
+font-family: "Courier New", Courier, monospace;
+}
+
 body {
   text-align: center;
   color: #f5f5f5;
