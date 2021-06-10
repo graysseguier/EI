@@ -48,6 +48,7 @@ router.get("/filter", function (req, res) {
     res.json({ movies: movies });
   });
 });
+
 router.get("/sortby", function (req, res) {
   console.log(req.query);
   MovieModel.find({})
@@ -56,4 +57,5 @@ router.get("/sortby", function (req, res) {
       res.json({ movies: movies });
     });
 });
+
 module.exports = router;
