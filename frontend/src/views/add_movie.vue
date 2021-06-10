@@ -299,7 +299,7 @@ export default {
 body {
   text-align: center;
   color: #f5f5f5;
-  background-image: linear-gradient(-90deg , #0c0c0d, #1a1a1a);
+  background-image: black;
   font-family: 'Roboto';
   
 }
