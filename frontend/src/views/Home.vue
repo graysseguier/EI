@@ -1,149 +1,19 @@
 <template>
-  <div class="home">
-    <img
-      alt="Vue logo"
-      src="https://filmfaremiddleeast.com/wp-content/uploads/2020/03/movies-to-watch-article-size.jpg"
-      width="600"
-      height="300"
-    />
-    <div class="navbar">
-      <a href="#home">Home</a>
-      <a href="#users">Users</a>
-      <DropdownButton name="Genre">
-        <a href="#">Action</a>
-        <a href="#">Adventure</a>
-        <a href="#">Animation</a>
-        <a href="#">Comedy</a>
-        <a href="#">Crime</a>
-        <a href="#">Documentary</a>
-        <a href="#">Drama</a>
-        <a href="#">Family</a>
-        <a href="#">Fantasy</a>
-        <a href="#">History</a>
-        <a href="#">Horror</a>
-        <a href="#">Music</a>
-        <a href="#">Mystery</a>
-        <a href="#">Romance</a>
-        <a href="#">Science Fiction</a>
-        <a href="#">Thriller</a>
-        <a href="#">TV Movie</a>
-        <a href="#">War</a>
-        <a href="#">Western</a>
-      </DropdownButton>
-      <DropdownButton name="Date">
-        <a href="#">2021</a>
-        <a href="#">2020</a>
-        <a href="#">2019</a>
-        <a href="#">Other</a>
-      </DropdownButton>
-      <DropdownButton name="Language">
-        <a href="#">English</a>
-        <a href="#">French</a>
-        <a href="#">Japanese</a>
-        <a href="#">Other</a>
-      </DropdownButton>
+  <br />
+  <h1>Popular movies right now</h1>
 
-      <a href="#About">About</a>
-      <div class="search-container">
-        <form action="/action_page.php">
-          <input type="text" placeholder="Search.." name="search" />
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-    </div>
+  <li v-for="movie in movies" :key="movie.id" :movie="movie">
+    <Movie :movie="movie" />
+  </li>
 
-    <h1>Welcome to your own online cinema</h1>
-    <p>What movie do you want to add?</p>
-    <input v-model="movieName" placeholder="Enter movie name" />
-    <p>Movie added: {{ movieName }}</p>
-    <h1>Popular movies right now</h1>
-
-    <li v-for="movie in movies" :key="movie.id" :movie="movie">
-      <Movie :movie="movie" />
-    </li>
-
-    <!-- <div class="single-img">
-      <img
-        alt="movie poster"
-        src="'https://image.tmdb.org/t/p/w300_and_h450_bestv2' + movie.poster_path"
-      />
-    </div> -->
-
-    <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
-
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank">Forum</a>
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank">Community Chat</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank">Twitter</a>
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank">vue-router</a>
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank">vue-loader</a>
-      </li>
-      <li>
-        <a href="https://github.com/vuejs/awesome-vue" target="_blank"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
-  </div>
+  <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
 </template>
 
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import DropdownButton from "@/components/DropdownButton.vue";
 export default {
-  components: { Movie, DropdownButton },
+  components: { Movie },
   name: "Home",
 
   data: function () {
