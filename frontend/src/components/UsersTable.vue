@@ -1,13 +1,11 @@
 <template>
   <table>
     <thead>
-      <th>Email</th>
       <th>First name</th>
       <th>Lirst name</th>
     </thead>
     <tbody>
       <tr v-for="user in users" :key="user.email">
-        <td>{{ user.email }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
       </tr>
