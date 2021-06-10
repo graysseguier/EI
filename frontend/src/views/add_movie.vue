@@ -1,5 +1,5 @@
 <template>
-
+<body>
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
     <ul>
@@ -8,56 +8,8 @@
 </p>
 
   <p>
-    <label for="Title">Title</label>
-    <input
-      id="title"
-      v-model="title"
-      type="text"
-      name="title"
-    >
-  </p>
 
-  <p>
-    <input type="checkbox" id="28" value="28" v-model="genre_ids">
-<label for="Action">Action</label>
-<input type="checkbox" id="12" value="12" v-model="genre_ids">
-<label for="Adventure">Adventure</label>
-<input type="checkbox" id="16" value="16" v-model="genre_ids">
-<label for="Animation">Animation</label>
-<input type="checkbox" id="35" value="35" v-model="genre_ids">
-<label for="Comedy">Comedy</label>
-<input type="checkbox" id="80" value="80" v-model="genre_ids">
-<label for="Crime">Crime</label>
-<input type="checkbox" id="99" value="99" v-model="genre_ids">
-<label for="Documentary">Documentary</label>
-<input type="checkbox" id="18" value="18" v-model="genre_ids">
-<label for="Drama">Drama</label>
-<input type="checkbox" id="10751" value="10751" v-model="genre_ids">
-<label for="Family">Family</label>
-<input type="checkbox" id="14" value="14" v-model="genre_ids">
-<label for="Fantasy">Fantasy</label>
-<input type="checkbox" id="36" value="36" v-model="genre_ids">
-<label for="History">History</label>
-<input type="checkbox" id="27" value="27" v-model="genre_ids">
-<label for="Horror">Horror</label>
-<input type="checkbox" id="10402" value="10402" v-model="genre_ids">
-<label for="Music">Music</label>
-<input type="checkbox" id="9648" value="9648" v-model="genre_ids">
-<label for="Mistery">Mistery</label>
-<input type="checkbox" id="10749" value="10749" v-model="genre_ids">
-<label for="Romance">Romance</label>
-<input type="checkbox" id="878" value="878" v-model="genre_ids">
-<label for="Science Fiction">Science Fiction</label>
-<input type="checkbox" id="53" value="53" v-model="genre_ids">
-<label for="Thriller">Thriller</label>
-<input type="checkbox" id="10770" value="10770" v-model="genre_ids">
-<label for="TV movie">TV movie</label>
-<input type="checkbox" id="10752" value="10752" v-model="genre_ids">
-<label for="War">War</label>
-<input type="checkbox" id="37" value="37" v-model="genre_ids">
-<label for="Western">Western</label>
-{{genre_ids}}
- <input type="number" name="vote_average" v-model.number="vote_average"> Vote Average
+ Vote Average<input type="number" name="vote_average" v-model.number="vote_average"> 
   </p>
   <div class="FormDate">
     <input
@@ -82,9 +34,201 @@
 <input type="radio" id="false" value=false v-model="adult">
 <label for="two">No</label>
 <br>
-<span>Adult : {{ adult }}</span>
 
-<button @click="envoie">Envoie</button>
+
+
+
+
+<section class="genre">
+    <div>
+    <input
+      id="title"
+      v-model="title"
+      type="text"
+      name="title"
+    placeholder="Title">
+    </div>
+    <div>
+  <article>
+    <input type="checkbox" id="28" value="28" v-model="genre_ids"/>
+    <div>
+      <span>
+        Action
+      </span>
+    </div>
+  </article>
+  
+  <article>
+    <input type="checkbox" id="12" value="12" v-model="genre_ids"/>
+    <div>
+      <span>
+        Adventure
+      </span>
+    </div>
+  </article>
+    </div>
+  
+  <article>
+    <input type="checkbox" id="16" value="16" v-model="genre_ids">
+    <div>
+      <span>
+        Animation
+      </span>
+    </div>
+  </article>
+  
+  <article>
+    <input type="checkbox" id="35" value="35" v-model="genre_ids">
+    <div>
+      <span>
+        Comedy
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="80" value="80" v-model="genre_ids">
+    <div>
+      <span>
+        Crime
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="99" value="99" v-model="genre_ids">
+    <div>
+      <span>
+        Documentary
+      </span>
+    </div>
+  </article>
+
+  <article>
+    <input type="checkbox" id="18" value="18" v-model="genre_ids">
+    <div>
+      <span>
+        Drama
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="10751" value="10751" v-model="genre_ids">
+    <div>
+      <span>
+        Family
+      </span>
+    </div>
+  </article>
+
+<article>
+   <input type="checkbox" id="14" value="14" v-model="genre_ids">
+    <div>
+      <span>
+        Fantasy
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="36" value="36" v-model="genre_ids">
+    <div>
+      <span>
+        History
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="27" value="27" v-model="genre_ids">
+    <div>
+      <span>
+        Horror
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="10402" value="10402" v-model="genre_ids">
+    <div>
+      <span>
+        Music
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="9648" value="9648" v-model="genre_ids">
+    <div>
+      <span>
+        Mistery
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="10749" value="10749" v-model="genre_ids">
+    <div>
+      <span>
+        Romance
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="878" value="878" v-model="genre_ids">
+    <div>
+      <span>
+        Science Fiction
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="53" value="53" v-model="genre_ids">
+    <div>
+      <span>
+        Thriller
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="10770" value="10770" v-model="genre_ids">
+    <div>
+      <span>
+        TV movie
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="10752" value="10752" v-model="genre_ids">
+    <div>
+      <span>
+        War
+      </span>
+    </div>
+  </article>
+
+<article>
+    <input type="checkbox" id="37" value="37" v-model="genre_ids">
+    <div>
+      <span>
+        Western
+      </span>
+    </div>
+  </article>
+
+
+  <button class="upgrade-btn" @click="envoie">Add</button>
+ 
+  
+</section>
+
+
+</body>
 </template>
 <script>
 import axios from "axios";
@@ -150,3 +294,112 @@ export default {
 };
 
 </script>
+
+<style scoped>
+body {
+  text-align: center;
+  color: #f5f5f5;
+  background-image: linear-gradient(-90deg , #0c0c0d, #1a1a1a);
+  font-family: 'Roboto';
+  
+}
+
+.genre {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.genre i {
+  font-size: 80px;
+  
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: 1;
+}
+
+article {
+  position: relative;
+  left: 15%;
+  width: 100px;
+  height: 50px;
+  margin: 5px;
+  float: left;
+  border: 2px solid #50bcf2;
+  box-sizing: border-box;
+}
+
+article div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 25px;
+  transition: .5s ease;
+}
+
+article input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 100px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+input[type=checkbox]:checked ~ div {
+  background-color: #50bcf2;
+}
+
+.upgrade-btn {
+  display: inline-block;
+  margin: 40px auto;
+  width: 200px;
+  padding: 10px 20px;
+  border: 2px solid #50bcf2;
+  border-radius: 50px;
+  color: #f5f5f5;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: .3s ease;
+  background-color: black;
+}
+
+.upgrade-btn:hover {
+  background-color: #50bcf2;
+}
+
+.blue-color {
+  color: #50bcf2;
+}
+
+.gray-color {
+  color: #555;
+}
+
+.social i:before {
+  width: 14px;
+  height: 14px;
+  position: fixed;
+  color: #fff;
+  background: #0077B5;
+  padding: 10px;
+  border-radius: 50%;
+  top:5px;
+  right:5px;
+}
+
+@keyframes slidein {
+  from {
+    margin-top: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin: 0%;
+    width: 100%;
+  }
+}
+</style>
