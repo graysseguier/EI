@@ -8,7 +8,9 @@
     />
     <div class="navbar">
       <router-link class="nav-link" to="/">Home</router-link>
-      <router-link class="nav-link" to="/users">Users</router-link>
+      <router-link class="nav-link" to="/recommandation"
+        >Recommandation</router-link
+      >
       <DropdownButton name="Genre">
         <a href="#">Action</a>
         <a href="#">Adventure</a>
@@ -56,6 +58,7 @@
   </div>
 </template>
 <script>
+//import axios from "axios";
 import DropdownButton from "@/components/DropdownButton.vue";
 export default {
   components: { DropdownButton },
