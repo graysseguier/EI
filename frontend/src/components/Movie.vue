@@ -32,7 +32,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 export default {
   name: "Movie",
   props: {
@@ -46,14 +46,34 @@ export default {
   },
   methods: {
     liker: function () {
-      //axios.post();
       this.like = true;
-      console.log("hello");
-      return true;
+      axios
+        .put("http://localhost:3000/users/like", {
+          email: "axel.merlin@orange.fr",
+          movie_id: this.movie.id,
+        })
+        .then((response) => {
+          response.json("Movie liked");
+        })
+        .catch((error) => {
+          this.moviesLoadingError = "An error occured while fetching movies.";
+          console.log(error);
+        });
     },
     disliker: function () {
       this.like = false;
-      return true;
+      axios
+        .put("http://localhost:3000/users/dislike", {
+          email: "axel.merlin@orange.fr",
+          movie_id: this.movie.id,
+        })
+        .then((response) => {
+          response.json("Movie Unliked");
+        })
+        .catch((error) => {
+          this.moviesLoadingError = "An error occured while fetching movies.";
+          console.log(error);
+        });
     },
 
   },
