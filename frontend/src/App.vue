@@ -12,25 +12,8 @@
         >Recommandation</router-link
       >
       <DropdownButton name="Genre">
-        <a href="#">Action</a>
-        <a href="#">Adventure</a>
-        <a href="#">Animation</a>
-        <a href="#">Comedy</a>
-        <a href="#">Crime</a>
-        <a href="#">Documentary</a>
-        <a href="#">Drama</a>
-        <a href="#">Family</a>
-        <a href="#">Fantasy</a>
-        <a href="#">History</a>
-        <a href="#">Horror</a>
-        <a href="#">Music</a>
-        <a href="#">Mystery</a>
-        <a href="#">Romance</a>
-        <a href="#">Science Fiction</a>
-        <a href="#">Thriller</a>
-        <a href="#">TV Movie</a>
-        <a href="#">War</a>
-        <a href="#">Western</a>
+        <a v-for="genre in genres" :key="genre" href="#">{{ genre }}</a>
+        <!-- @click="" à rajouter à l'intérieur -->
       </DropdownButton>
       <DropdownButton name="Date">
         <a href="#">2021</a>
@@ -60,8 +43,10 @@
 <script>
 //import axios from "axios";
 import DropdownButton from "@/components/DropdownButton.vue";
+import { genres } from "./constants";
 export default {
   components: { DropdownButton },
+  genres: genres,
   name: "App",
 };
 </script>
