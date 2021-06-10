@@ -25,14 +25,11 @@ export default {
   },
 
   methods: {
-    fetchMovies: function () {
+    fetchMovies: function (search) {
       axios
-        .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=en-US&page=1`
-        )
+        .get(`http://localhost:3000/movies/filter`, { params: search })
         .then((response) => {
-          this.movies = response.data.results;
-          console.log(response);
+          this.movies = response.data;
         })
         .catch((error) => {
           this.moviesLoadingError = "An error occured while fetching movies.";
@@ -41,7 +38,11 @@ export default {
     },
   },
   created: function () {
-    this.fetchMovies();
+    this.fetchMovies(this.$route.query);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.fetchMovies(to.query);
+    next();
   },
 };
 </script>

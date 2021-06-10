@@ -18,9 +18,10 @@
           class="image"
         />
         <div class="middle">
-          <div class="text">
-            <p>{{ movie.original_title }}</p>
-            {{ movie.overview.slice(0, 200) + "..." }}
+
+          <div v-if="movie.overview" class="text">
+            {{ movie.overview.slice(0, 250) + "..." }}
+
           </div>
         </div>
         <button @click="disliker" class="fa fa-heart red" v-if="like"></button>
@@ -37,6 +38,7 @@ export default {
   props: {
     movie: Object,
   },
+
   data: function () {
     return {
       like: false,
@@ -53,6 +55,7 @@ export default {
       this.like = false;
       return true;
     },
+
   },
 };
 </script>
