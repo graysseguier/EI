@@ -27,12 +27,12 @@ export default {
   methods: {
     fetchMovies: function () {
       axios
-        .get(
-          `https://api.themoviedb.org/3/movie/popular?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=en-US&page=1`
-        )
+
+        .get(`http://localhost:3000/movies/sortby?popularity=ASC`)
+
         .then((response) => {
-          this.movies = response.data.results;
-          console.log(response);
+          this.movies = response.data;
+          console.log({ response });
         })
         .catch((error) => {
           this.moviesLoadingError = "An error occured while fetching movies.";
