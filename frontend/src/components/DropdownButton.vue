@@ -35,6 +35,7 @@ export default {
 
 .dropdown:hover .dropbtn {
   background-color: red;
+  cursor: pointer;
 }
 
 .dropdown-content {
