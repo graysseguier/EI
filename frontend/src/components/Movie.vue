@@ -23,35 +23,64 @@
             {{ movie.overview.slice(0, 200) + "..." }}
           </div>
         </div>
-        <div class="button">
-          <!-- Use an element to toggle between a like/dislike icon -->
-          <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-        </div>
+        <button @click="disliker" class="fa fa-heart red" v-if="like"></button>
+        <button @click="liker" class="fa fa-heart white" v-if="!like"></button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+//import axios from "axios";
 export default {
   name: "Movie",
   props: {
     movie: Object,
   },
+  data: function () {
+    return {
+      like: false,
+    };
+  },
+  methods: {
+    liker: function () {
+      //axios.post();
+      this.like = true;
+      console.log("hello");
+      return true;
+    },
+    disliker: function () {
+      this.like = false;
+      return true;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.red {
+  color: red;
+}
+.white {
+  color: white;
+}
 .container {
   position: relative;
   width: 50%;
   align-content: center;
   margin-bottom: 100px;
 }
-.button {
+button {
   position: relative;
   align-content: center;
+  margin-top: 10px;
+  font-size: 200%;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: transparent;
 }
+
 .image {
   opacity: 1;
   display: block;
