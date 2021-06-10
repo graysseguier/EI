@@ -27,7 +27,9 @@ export default {
   methods: {
     fetchMovies: function () {
       axios
-        .get(`http://localhost:3000/movies/sortby?popularity`)
+        .get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&language=en-US&page=1`
+        )
         .then((response) => {
           this.movies = response.data.results;
           console.log(response);
