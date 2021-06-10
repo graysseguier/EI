@@ -1,7 +1,12 @@
 <template>
   <div class="area">
     <div class="container">
-      <h2>{{ movie.original_title }}</h2>
+      <h2 v-if="movie.original_title.length < 25">
+        {{ movie.original_title }}
+      </h2>
+      <h2 v-if="movie.original_title.length >= 25">
+        {{ movie.original_title.slice(0, 25) + "..." }}
+      </h2>
       <p>{{ movie.release_date }}</p>
       <div class="single-img">
         <img
@@ -14,7 +19,8 @@
         />
         <div class="middle">
           <div class="text">
-            {{ movie.overview.slice(0, 250) + "..." }}
+            <p>{{ movie.original_title }}</p>
+            {{ movie.overview.slice(0, 200) + "..." }}
           </div>
         </div>
         <div class="button">
@@ -39,6 +45,8 @@ export default {
 .container {
   position: relative;
   width: 50%;
+  align-content: center;
+  margin-bottom: 100px;
 }
 .button {
   position: relative;
@@ -84,52 +92,14 @@ export default {
   width: 220px;
   height: 380px;
   padding: 20px 32px;
-  position: relative;
+  text-align: center;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  position: absolute;
+  right: -215px;
+  bottom: -240px;
 }
 h2 {
   text-align: center;
 }
-/* .container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-.container.img-area {
-  position: relative;
-}
-.container.img-area.single-img {
-  position: relative;
-  height: 200;
-  width: 300;
-  padding: 0 20px 20px;
-}
-img:hover {
-  transform: scale(1.05);
-  opacity: 0.5;
-  transition: 0.5s;
-  cursor: pointer;
-}
-.container.img-area.single-img.details {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 30px;
-  background: rgba(46, 44, 44, 0.1);
-  font-size: 10px;
-  color: rgb(116, 31, 173);
-  /* visibility: hidden;
-  opacity: 0; */
-/* transition: opacity 0.2s, visibility 0.2s; */
-/* transform: scaleY(0);
-  transition: 0.5s; */
-/* }
-.single-img:hover.details {
-  visibility: visible;
-  opacity: 1;
-} */
 </style>
