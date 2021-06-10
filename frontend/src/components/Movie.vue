@@ -38,6 +38,9 @@ export default {
   props: {
     movie: Object,
   },
+  created() {
+    console.log(this.movie);
+  },
 };
 </script>
 

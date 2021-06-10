@@ -45,17 +45,15 @@ router.post("/del", function (req, res) {
 router.get("/filter", function (req, res) {
   console.log(req.query);
   MovieModel.find(req.query).then(function (movies) {
-    res.json({ movies: movies });
+    res.json(movies);
   });
 });
 
 router.get("/sortby", function (req, res) {
   console.log(req.query);
-  MovieModel.find({})
-    .sort(req.query)
-    .then(function (movies) {
-      res.json({ movies: movies });
-    });
+  MovieModel.find({}).then(function (movies) {
+    res.json(movies);
+  });
 });
 
 module.exports = router;
