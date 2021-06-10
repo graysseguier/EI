@@ -6,7 +6,7 @@
     <Movie :movie="movie" />
   </li>
 
-  <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
+  <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
 
 <script>
