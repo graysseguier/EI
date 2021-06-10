@@ -1,4 +1,5 @@
 const express = require("express");
+const movieModel = require("../models/movies");
 const MovieModel = require("../models/movies");
 const router = express.Router();
 
@@ -42,18 +43,38 @@ router.post("/del", function (req, res) {
   });
 });
 
-router.get("/filter", function (req, res) {
+router.get("/filter/genre", function (req, res) {
   console.log(req.query);
-  MovieModel.find(req.query).then(function (movies) {
-    res.json(movies);
-  });
+  MovieModel.find({ genre_ids: { $in: parseInt(req.query.genre_ids) } })
+    .sort({ popularity: -1 })
+    .then(function (movies) {
+      res.json(movies);
+    });
 });
 
-router.get("/sortby", function (req, res) {
-  console.log(req.query);
-  MovieModel.find({}).then(function (movies) {
-    res.json(movies);
-  });
+router.get("/filter", function (req, res) {
+  const mongoQuery = {};
+  if (req.query.original_language) {
+    mongoQuery.original_language = req.query.original_language;
+  }
+  if (req.query.genre_ids) {
+    mongoQuery.genre_ids = parseInt(req.query.genre_ids);
+  }
+  if (req.query.date) {
+    console.log((parseInt(req.query.date) + 1).toString());
+    mongoQuery.release_date = {
+      $gte: new Date(req.query.date).toISOString(),
+      $lt: new Date((parseInt(req.query.date) + 1).toString()).toISOString(),
+    };
+  }
+
+  console.log(mongoQuery);
+
+  MovieModel.find(mongoQuery)
+    .sort({ popularity: -1 })
+    .then(function (movies) {
+      res.json(movies);
+    });
 });
 
 module.exports = router;

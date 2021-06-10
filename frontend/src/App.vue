@@ -12,20 +12,26 @@
         >Recommandation</router-link
       >
       <DropdownButton name="Genre">
-        <a v-for="genre in genres" :key="genre" href="#">{{ genre }}</a>
+        <router-link
+          v-for="genre in genresID"
+          :key="genre.id"
+          :to="`/?genre_ids=${genre.id}`"
+          >{{ genre.name }}</router-link
+        >
         <!-- @click="" à rajouter à l'intérieur -->
       </DropdownButton>
       <DropdownButton name="Date">
-        <a href="#">2021</a>
-        <a href="#">2020</a>
-        <a href="#">2019</a>
-        <a href="#">Other</a>
+        <router-link :to="`/?date=2021`">2021</router-link>
+        <router-link :to="`/?date=2020`">2020</router-link>
+        <router-link :to="`/?date=2019`">2019</router-link>
       </DropdownButton>
       <DropdownButton name="Language">
-        <a href="#">English</a>
-        <a href="#">French</a>
-        <a href="#">Japanese</a>
-        <a href="#">Other</a>
+        <router-link
+          v-for="lang in langs"
+          :key="lang.id"
+          :to="`/?original_language=${lang.id}`"
+          >{{ lang.name }}</router-link
+        >
       </DropdownButton>
       <router-link class="nav-link" to="/Add Movie">Add Movie</router-link>
       <router-link class="nav-link" to="/about">About</router-link>
@@ -42,10 +48,15 @@
 </template>
 <script>
 import DropdownButton from "@/components/DropdownButton.vue";
-import { genres } from "./constants";
+import { genresID, Langs } from "./constants";
 export default {
   components: { DropdownButton },
-  genres: genres,
+  data: function () {
+    return {
+      genresID: genresID,
+      langs: Langs,
+    };
+  },
   name: "App",
 };
 </script>

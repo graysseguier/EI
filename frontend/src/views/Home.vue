@@ -25,14 +25,11 @@ export default {
   },
 
   methods: {
-    fetchMovies: function () {
+    fetchMovies: function (search) {
       axios
-
-        .get(`http://localhost:3000/movies/sortby?popularity=ASC`)
-
+        .get(`http://localhost:3000/movies/filter`, { params: search })
         .then((response) => {
           this.movies = response.data;
-          console.log({ response });
         })
         .catch((error) => {
           this.moviesLoadingError = "An error occured while fetching movies.";
@@ -41,7 +38,11 @@ export default {
     },
   },
   created: function () {
-    this.fetchMovies();
+    this.fetchMovies(this.$route.query);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.fetchMovies(to.query);
+    next();
   },
 };
 </script>

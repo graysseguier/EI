@@ -13,7 +13,7 @@
           class="image"
         />
         <div class="middle">
-          <div class="text">
+          <div v-if="movie.overview" class="text">
             {{ movie.overview.slice(0, 250) + "..." }}
           </div>
         </div>
@@ -33,7 +33,7 @@ export default {
     movie: Object,
   },
   created() {
-    console.log(this.movie);
+    // console.log(this.movie);
   },
 };
 </script>
