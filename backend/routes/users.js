@@ -28,9 +28,37 @@ router.post("/new", function (req, res) {
         });
       } else {
         res.status(500).json({ message: "Error while creating the user" });
-        console.log(error)
+        console.log(error);
       }
     });
+});
+
+router.put("/like", function (req, res) {
+  console.log(req.body);
+  UserModel.findOne({ email: req.body.email }).then(function (user) {
+    console.log(user);
+    if (user == null) {
+      res.status(404).json("User not found");
+      return;
+    }
+    user.update({ $addToSet: { filmsLiked: [req.body.movie_id] } }).then(() => {
+      res.json({ status: "ok" });
+    });
+  });
+});
+
+router.put("/dislike", function (req, res) {
+  console.log(req.body);
+  UserModel.findOne({ email: req.body.email }).then(function (user) {
+    console.log(user);
+    if (user == null) {
+      res.status(404).json("User not found");
+      return;
+    }
+    user.update({ $pull: { filmsLiked: req.body.movie_id } }).then(() => {
+      res.json({ status: "ok" });
+    });
+  });
 });
 
 module.exports = router;
