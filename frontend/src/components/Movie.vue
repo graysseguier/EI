@@ -154,8 +154,8 @@ button {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   position: absolute;
-  right: -215px;
-  bottom: -240px;
+  right: -207px;
+  bottom: -269px;
 }
 h2 {
   text-align: center;
