@@ -10,6 +10,7 @@
       <p>{{ movie.release_date }}</p>
       <div class="single-img">
         <img
+          v-if="movie.poster_path"
           alt="movie poster"
           :src="
             'https://image.tmdb.org/t/p/w300_and_h450_bestv2' +
@@ -17,11 +18,15 @@
           "
           class="image"
         />
+        <img
+          v-else
+          alt="movie poster"
+          :src="'https://papystreaming.black/uploads/posts/2016-07/1467388126_no_poster.png'"
+          class="image"
+        />
         <div class="middle">
-
           <div v-if="movie.overview" class="text">
             {{ movie.overview.slice(0, 250) + "..." }}
-
           </div>
         </div>
         <button @click="disliker" class="fa fa-heart red" v-if="like"></button>
@@ -32,7 +37,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 export default {
   name: "Movie",
   props: {
@@ -46,16 +51,35 @@ export default {
   },
   methods: {
     liker: function () {
-      //axios.post();
       this.like = true;
-      console.log("hello");
-      return true;
+      axios
+        .put("http://localhost:3000/users/like", {
+          email: "axel.merlin@orange.fr",
+          movie_id: this.movie.id,
+        })
+        .then((response) => {
+          response.json("Movie liked");
+        })
+        .catch((error) => {
+          this.moviesLoadingError = "An error occured while fetching movies.";
+          console.log(error);
+        });
     },
     disliker: function () {
       this.like = false;
-      return true;
+      axios
+        .put("http://localhost:3000/users/dislike", {
+          email: "axel.merlin@orange.fr",
+          movie_id: this.movie.id,
+        })
+        .then((response) => {
+          response.json("Movie Unliked");
+        })
+        .catch((error) => {
+          this.moviesLoadingError = "An error occured while fetching movies.";
+          console.log(error);
+        });
     },
-
   },
 };
 </script>

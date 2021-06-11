@@ -1,6 +1,3 @@
-db.movies.find({
-  release_date: {
-    $gte: Date("2020"),
-    $lte: Date(String(parseInt("2020") + 1)),
-  },
+db.movies.find(
+    { "title": { "$regex": "man"},
 });

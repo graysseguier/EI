@@ -1,1 +1,1 @@
-db.movies.find({ genre_ids: { $in: ["27"] } });
+db.movies.find({ original_title: "man", });
