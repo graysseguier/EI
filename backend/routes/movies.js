@@ -77,9 +77,9 @@ router.get("/filter", function (req, res) {
 });
 
 router.post("/id", function (req, res) {
-  MovieModel.find({ id: req.body.id }).then(function (movies) {
+  MovieModel.findOne({ id: req.body.id }).then(function (movie) {
     console.log(req.body);
-    res.json({ movies: movies });
+    res.json(movie);
   });
 });
 
