@@ -5,7 +5,7 @@
   <li v-for="movie in recommandedfilms" :key="movie.id" :movie="movie">
     <Movie :movie="movie" />
   </li>
-  {{ othermovie }}
+  {{ recommandedfilms }}
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
   <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
@@ -13,7 +13,7 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import recommandation from "recommandation/recommandation.js";
+import recommandation from "@/components/recommandation.js";
 //import UsersTable from "@/components/UsersTable.vue";
 
 export default {
@@ -40,7 +40,7 @@ export default {
     },
 
     fetchAllMovie: function () {
-      axios.get("http://localhost:3000/movies").then((response) => {
+      return axios.get("http://localhost:3000/movies").then((response) => {
         this.othermovies = response.data.movies;
       });
     },
@@ -49,16 +49,16 @@ export default {
         .post("http://localhost:3000/users/email", {
           email: "eddy.fficile@orange.fr",
         })
-        .then((response) => {
+        .then(async (response) => {
           const moviesLikedIds = response.data.users[0].filmsLiked;
           for (const movie_id of moviesLikedIds) {
-            axios
-              .post("http://localhost:3000/movies/id", { id: movie_id })
-              .then((response) => {
-                this.moviesLiked.push(response.data);
-              });
+            const response = await axios.post(
+              "http://localhost:3000/movies/id",
+              { id: movie_id }
+            );
+            this.moviesLiked.push(response.data);
           }
-          this.fetchAllMovie();
+          await this.fetchAllMovie();
           this.recommande(this.moviesLiked, this.othermovies);
         })
         .catch((error) => {
