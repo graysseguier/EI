@@ -13,6 +13,7 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
+import recommandation from "recommandation\recommandation.js";
 //import UsersTable from "@/components/UsersTable.vue";
 
 export default {

@@ -67,3 +67,8 @@ function sort(films) {
     };
     return sort(rep).reverse();
 }  
+
+function recommandation(filmsLiked, otherFilms) {
+    let movieType = movieType(filmsLiked);
+    return classement(movieType, otherFilms);
+}
