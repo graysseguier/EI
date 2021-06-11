@@ -29,6 +29,7 @@ export default {
       user: "",
       moviesLoadingError: "",
       usersLoadingError: "",
+      filmsLiked: [],
     };
   },
 
