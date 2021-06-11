@@ -4,7 +4,6 @@ let genres = [28, 12, 16, 35, 80, 99, 18, 10751, 14, 36,
 
 function vectorFilm(film) {
     let rep = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    let n = rep.length
     for (let i in genres) {
         if (genres[i] in films["genre_ids"]) {
             rep[i] = 1;
@@ -58,7 +57,6 @@ function sort(films) {
   }
 
   function classement(filmVector, otherFilms) {
-    let n = Object.keys(otherFilms).length;
     let rep = [];
     for (let film of otherFilms) {
         let v = vectorFilm(film);
