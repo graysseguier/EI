@@ -4,7 +4,6 @@ let genres = [28, 12, 16, 35, 80, 99, 18, 10751, 14, 36,
 
 function vectorFilm(film) {
     let rep = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    let n = rep.length
     for (let i in genres) {
         if (genres[i] in films["genre_ids"]) {
             rep[i] = 1;
@@ -13,10 +12,10 @@ function vectorFilm(film) {
     return rep;
 }
 
-function movieType(films) {
-    let n = Object.keys(films).length;
+function movieType(filmsTab) {
+    let n = filmsTab.length;
     let sum = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    for (let film of films) {
+    for (let film of filmsTab) {
         v = vectorFilm(film);
         for (let i in v) {
             sum[i]+=v[i];
@@ -58,7 +57,6 @@ function sort(films) {
   }
 
   function classement(filmVector, otherFilms) {
-    let n = Object.keys(otherFilms).length;
     let rep = [];
     for (let film of otherFilms) {
         let v = vectorFilm(film);
@@ -67,3 +65,8 @@ function sort(films) {
     };
     return sort(rep).reverse();
 }  
+
+function recommandation(filmsLiked, otherFilms) {
+    let movieType = movieType(filmsLiked);
+    return classement(movieType, otherFilms);
+}
