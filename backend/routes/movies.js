@@ -1,5 +1,4 @@
 const express = require("express");
-
 const MovieModel = require("../models/movies");
 const router = express.Router();
 
@@ -75,6 +74,13 @@ router.get("/filter", function (req, res) {
     .then(function (movies) {
       res.json(movies);
     });
+});
+
+router.post("/id", function (req, res) {
+  MovieModel.find({ id: req.body.id }).then(function (movies) {
+    console.log(req.body);
+    res.json({ movies: movies });
+  });
 });
 
 module.exports = router;
