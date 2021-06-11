@@ -1,13 +1,15 @@
 <template>
   <div class="area">
     <div class="container">
-      <h2 v-if="movie.original_title.length < 25">
+      <h2 v-if="movie.original_title && movie.original_title.length < 25">
         {{ movie.original_title }}
       </h2>
-      <h2 v-if="movie.original_title.length >= 25">
+      <h2 v-if="movie.original_title && movie.original_title.length >= 25">
         {{ movie.original_title.slice(0, 25) + "..." }}
       </h2>
-      <p>{{ movie.release_date }}</p>
+      <h4>Rating:{{ movie.vote_average }}</h4>
+      <h4>Popularity:{{ movie.popularity }}</h4>
+      <h4>{{ movie.release_date }}</h4>
       <div class="single-img">
         <img
           v-if="movie.poster_path"

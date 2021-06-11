@@ -1,6 +1,5 @@
 <template>
   <br />
-  <h1>Popular movies right now</h1>
 
   <li v-for="movie in movies" :key="movie.id" :movie="movie">
     <Movie :movie="movie" />
