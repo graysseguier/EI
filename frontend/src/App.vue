@@ -3,8 +3,6 @@
     <img
       alt="Vue logo"
       src="https://filmfaremiddleeast.com/wp-content/uploads/2020/03/movies-to-watch-article-size.jpg"
-      width="600"
-      height="300"
     />
     <div class="navbar">
       <router-link class="nav-link" to="/">Home</router-link>
@@ -62,6 +60,10 @@ export default {
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+  height: 300px;
+}
 .nav {
   text-align: center;
   padding: 30px;

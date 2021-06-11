@@ -61,4 +61,11 @@ router.put("/dislike", function (req, res) {
   });
 });
 
+router.get("/email", function (req, res) {
+  UserModel.find({ email: req.body.email }).then(function (users) {
+    console.log(req.body);
+    res.json({ users: users });
+  });
+});
+
 module.exports = router;
