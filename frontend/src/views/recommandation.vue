@@ -54,36 +54,6 @@ export default {
           console.log(error);
         });
     },
-<<<<<<< HEAD
-    fetchMovieCaract: function (movie_id) {
-      axios
-        .post("http://localhost:3000/movies/id", { id: movie_id })
-        .then((response) => {
-          console.log(response);
-          this.moviesLikeddata = response.data.movies;
-          //this.moviesLikeddata.push(response.data.movies);
-        })
-        .catch((error) => {
-          this.moviesLoadingError = "An error occured while fetching movies.";
-          console.log(error);
-        });
-    },
-    fetchMovie: function () {
-      axios
-        .get(function (req) {
-        let tab = recommandation(req);
-        let rep = [];
-        for (let i = 0; i < 10; i++) {
-          rep[i] = tab[i];
-          return rep;
-        }
-      })
-      .then(function () {
-        this.movies = 
-      })
-    },
-=======
->>>>>>> 304d9619556d63eec0ab964bba23fa8e60f8ff8d
   },
   created: function () {
     //this.fetchMovies();
