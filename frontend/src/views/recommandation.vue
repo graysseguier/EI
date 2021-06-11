@@ -6,7 +6,6 @@
     <Movie :movie="movie" />
   </li>
   {{ moviesLiked }}
-  {{ moviesLikeddata }}
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
   <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
@@ -25,8 +24,7 @@ export default {
     return {
       movieName: "",
       movies: "",
-      moviesLiked: null,
-      moviesLikeddata: [],
+      moviesLiked: [],
       user: "",
       moviesLoadingError: "",
       usersLoadingError: "",
@@ -35,14 +33,20 @@ export default {
   },
 
   methods: {
-    MovieUser: function () {
+    fetchMovieUser: function () {
       axios
         .post("http://localhost:3000/users/email", {
           email: "eddy.fficile@orange.fr",
         })
         .then((response) => {
-          this.moviesLiked = response.data.users[0].filmsLiked;
-          console.log(this.moviesLiked);
+          const moviesLikedIds = response.data.users[0].filmsLiked;
+          for (const movie_id of moviesLikedIds) {
+            axios
+              .post("http://localhost:3000/movies/id", { id: movie_id })
+              .then((response) => {
+                this.moviesLiked.push(response.data);
+              });
+          }
         })
         .catch((error) => {
           this.usersLoadingError =
@@ -50,6 +54,7 @@ export default {
           console.log(error);
         });
     },
+<<<<<<< HEAD
     fetchMovieCaract: function (movie_id) {
       axios
         .post("http://localhost:3000/movies/id", { id: movie_id })
@@ -77,15 +82,12 @@ export default {
         this.movies = 
       })
     },
+=======
+>>>>>>> 304d9619556d63eec0ab964bba23fa8e60f8ff8d
   },
   created: function () {
     //this.fetchMovies();
-    this.MovieUser();
-    //this.fetchMovieCaract(259693);
-    for (const movie_id in this.moviesLiked) {
-      this.fetchMovieCaract(movie_id);
-      //this.movies.push(this.moviesLikeddata);
-    }
+    this.fetchMovieUser();
   },
 };
 </script>

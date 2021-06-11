@@ -42,15 +42,6 @@ router.post("/del", function (req, res) {
   });
 });
 
-router.get("/filter/genre", function (req, res) {
-  console.log(req.query);
-  MovieModel.find({ genre_ids: { $in: parseInt(req.query.genre_ids) } })
-    .sort({ popularity: -1 })
-    .then(function (movies) {
-      res.json(movies);
-    });
-});
-
 router.get("/filter", function (req, res) {
   const mongoQuery = {};
   if (req.query.original_language) {
@@ -66,10 +57,39 @@ router.get("/filter", function (req, res) {
       $lt: new Date((parseInt(req.query.date) + 1).toString()).toISOString(),
     };
   }
+  if (req.query.release_date) {
+    console.log("hello");
+    return MovieModel.find({})
+      .sort({ release_date: -1 })
+      .then(function (movies) {
+        res.json(movies);
+      });
+  }
+  if (req.query.popularity) {
+    return MovieModel.find({})
+      .sort({ popularity: -1 })
+      .then(function (movies) {
+        res.json(movies);
+      });
+  }
+  if (req.query.title) {
+    return MovieModel.find({})
+      .sort({ title: 1 })
+      .then(function (movies) {
+        res.json(movies);
+      });
+  }
+  if (req.query.vote_average) {
+    return MovieModel.find({})
+      .sort({ vote_average: -1 })
+      .then(function (movies) {
+        res.json(movies);
+      });
+  }
 
   console.log(mongoQuery);
 
-  MovieModel.find(mongoQuery)
+  return MovieModel.find(mongoQuery)
     .sort({ popularity: -1 })
     .then(function (movies) {
       res.json(movies);
@@ -77,9 +97,9 @@ router.get("/filter", function (req, res) {
 });
 
 router.post("/id", function (req, res) {
-  MovieModel.find({ id: req.body.id }).then(function (movies) {
+  MovieModel.findOne({ id: req.body.id }).then(function (movie) {
     console.log(req.body);
-    res.json({ movies: movies });
+    res.json(movie);
   });
 });
 
