@@ -2,10 +2,10 @@
   <br />
   <h1>Recommended movies</h1>
 
-  <li v-for="movie in movies" :key="movie.id" :movie="movie">
+  <li v-for="movie in recommandedfilms" :key="movie.id" :movie="movie">
     <Movie :movie="movie" />
   </li>
-  {{ moviesLiked }}
+  {{ othermovie }}
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
   <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
+import recommandation from "recommandation/recommandation.js";
 //import UsersTable from "@/components/UsersTable.vue";
 
 export default {
@@ -28,10 +29,21 @@ export default {
       moviesLoadingError: "",
       usersLoadingError: "",
       filmsLiked: [],
+      othermovies: "",
+      recommandedfilms: [],
     };
   },
 
   methods: {
+    recommande: function (filmsLiked, otherfilms) {
+      this.recommandedfilms = recommandation(filmsLiked, otherfilms);
+    },
+
+    fetchAllMovie: function () {
+      axios.get("http://localhost:3000/movies").then((response) => {
+        this.othermovies = response.data.movies;
+      });
+    },
     fetchMovieUser: function () {
       axios
         .post("http://localhost:3000/users/email", {
@@ -46,6 +58,8 @@ export default {
                 this.moviesLiked.push(response.data);
               });
           }
+          this.fetchAllMovie();
+          this.recommande(this.moviesLiked, this.othermovies);
         })
         .catch((error) => {
           this.usersLoadingError =
@@ -55,7 +69,7 @@ export default {
     },
   },
   created: function () {
-    //this.fetchMovies();
+    this.fetchAllMovie();
     this.fetchMovieUser();
   },
 };
