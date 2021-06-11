@@ -6,6 +6,7 @@
     <Movie :movie="movie" />
   </li>
   {{ moviesLiked }}
+  {{ moviesLikeddata }}
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
   <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
@@ -24,6 +25,7 @@ export default {
       movieName: "",
       movies: "",
       moviesLiked: null,
+      moviesLikeddata: [],
       user: "",
       moviesLoadingError: "",
       usersLoadingError: "",
@@ -46,12 +48,13 @@ export default {
           console.log(error);
         });
     },
-    fetchMovies: function () {
+    fetchMovieCaract: function (movie_id) {
       axios
-        .get(function () {})
+        .post("http://localhost:3000/movies/id", { id: movie_id })
         .then((response) => {
-          this.movies = response.data.results;
           console.log(response);
+          this.moviesLikeddata = response.data.movies;
+          //this.moviesLikeddata.push(response.data.movies);
         })
         .catch((error) => {
           this.moviesLoadingError = "An error occured while fetching movies.";
@@ -62,6 +65,11 @@ export default {
   created: function () {
     //this.fetchMovies();
     this.MovieUser();
+    //this.fetchMovieCaract(259693);
+    for (const movie_id in this.moviesLiked) {
+      this.fetchMovieCaract(movie_id);
+      //this.movies.push(this.moviesLikeddata);
+    }
   },
 };
 </script>
