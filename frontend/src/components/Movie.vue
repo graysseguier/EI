@@ -54,7 +54,7 @@ export default {
       this.like = true;
       axios
         .put("http://localhost:3000/users/like", {
-          email: "axel.merlin@orange.fr",
+          email: "eddy.fficile@orange.fr",
           movie_id: this.movie.id,
         })
         .then((response) => {
@@ -69,7 +69,7 @@ export default {
       this.like = false;
       axios
         .put("http://localhost:3000/users/dislike", {
-          email: "axel.merlin@orange.fr",
+          email: "eddy.fficile@orange.fr",
           movie_id: this.movie.id,
         })
         .then((response) => {

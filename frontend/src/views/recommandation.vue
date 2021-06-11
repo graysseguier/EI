@@ -2,14 +2,10 @@
   <br />
   <h1>Recommended movies</h1>
 
-  <li v-for="user in users" :key="user.email" :user="user">
-    <UsersTable :users="users" />
-  </li>
-
   <li v-for="movie in movies" :key="movie.id" :movie="movie">
     <Movie :movie="movie" />
   </li>
-
+  {{ moviesLiked }}
   <div v-if="usersLoadingError">{{ usersLoadingError }}</div>
   <div v-if="moviesLoadingError">{{ moviesLoadingError }}</div>
 </template>
@@ -17,16 +13,17 @@
 <script>
 import axios from "axios";
 import Movie from "@/components/Movie.vue";
-import UsersTable from "@/components/UsersTable.vue";
+//import UsersTable from "@/components/UsersTable.vue";
 
 export default {
-  components: { Movie, UsersTable },
+  components: { Movie },
   name: "Recommandation",
 
   data: function () {
     return {
       movieName: "",
       movies: "",
+      moviesLiked: null,
       user: "",
       moviesLoadingError: "",
       usersLoadingError: "",
@@ -34,15 +31,18 @@ export default {
   },
 
   methods: {
-    fetchUsers: function () {
+    MovieUser: function () {
       axios
-        .get(function () {})
+        .post("http://localhost:3000/users/email", {
+          email: "eddy.fficile@orange.fr",
+        })
         .then((response) => {
-          this.users = response.data.users;
-          console.log(response.data.users);
+          this.moviesLiked = response.data.users[0].filmsLiked;
+          console.log(this.moviesLiked);
         })
         .catch((error) => {
-          this.usersLoadingError = "An error occured while fetching movies.";
+          this.usersLoadingError =
+            "An error occured while fetching moviesLiked.";
           console.log(error);
         });
     },
@@ -60,12 +60,12 @@ export default {
     },
   },
   created: function () {
-    this.fetchMovies();
+    //this.fetchMovies();
+    this.MovieUser();
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home {
   text-align: center;
