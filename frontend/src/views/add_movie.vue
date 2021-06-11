@@ -1,5 +1,7 @@
 <template>
   <body>
+    <h1> What movie do you want to see on our website?  </h1>
+    <h1> Add your suggestion below: </h1>
     <input
       id="title"
       v-model="title"
@@ -46,11 +48,11 @@
       />
     </div>
     <div class="adult">
-      Déconseillé à un public sensible:
+      Adult Content?
       <input type="radio" id="true" value="true" v-model="adult" />
-      <label for="one">Oui</label>
+      <label for="one">Yes</label>
       <input type="radio" id="false" value="false" v-model="adult" />
-      <label for="two">Non</label>
+      <label for="two">No</label>
     </div>
 
     <section class="genre">
