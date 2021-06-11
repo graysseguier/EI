@@ -38,7 +38,12 @@
 
       <div class="search-container">
         <form action="/action_page.php">
-          <input type="text" placeholder="Search.." name="search" />
+          <input
+            type="text"
+            placeholder="Search.."
+            name="search"
+            id="myInput"
+          />
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
@@ -49,6 +54,7 @@
 <script>
 import DropdownButton from "@/components/DropdownButton.vue";
 import { genresID, Langs } from "./constants";
+import axios from "axios";
 export default {
   components: { DropdownButton },
   data: function () {
@@ -58,6 +64,27 @@ export default {
     };
   },
   name: "App",
+
+  methods: {
+    getInputValue: function () {
+      // Selecting the input element and get its value
+      var inputVal = document.getElementById("myInput").value;
+      // Displaying the value
+      alert(inputVal);
+    },
+    searchMovies: function (search) {
+      axios
+        .get(`http://localhost:3000/movies/search`, { params: search })
+        .then((response) => {
+          this.movies = response.data;
+        })
+        .catch((error) => {
+          this.moviesLoadingError =
+            "An error occured while searching for movies.";
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
 

@@ -10,6 +10,7 @@
       <p>{{ movie.release_date }}</p>
       <div class="single-img">
         <img
+          v-if="movie.poster_path"
           alt="movie poster"
           :src="
             'https://image.tmdb.org/t/p/w300_and_h450_bestv2' +
@@ -17,11 +18,15 @@
           "
           class="image"
         />
+        <img
+          v-else
+          alt="movie poster"
+          :src="'https://papystreaming.black/uploads/posts/2016-07/1467388126_no_poster.png'"
+          class="image"
+        />
         <div class="middle">
-
           <div v-if="movie.overview" class="text">
             {{ movie.overview.slice(0, 250) + "..." }}
-
           </div>
         </div>
         <button @click="disliker" class="fa fa-heart red" v-if="like"></button>
@@ -75,7 +80,6 @@ export default {
           console.log(error);
         });
     },
-
   },
 };
 </script>

@@ -26,6 +26,7 @@ app.use(jsonErrorHandler);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/movies", moviesRouter);
+
 app.use(routeNotFoundJsonHandler);
 
 const port = parseInt(process.env.PORT || "3000");
