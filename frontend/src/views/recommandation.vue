@@ -63,6 +63,20 @@ export default {
           console.log(error);
         });
     },
+    fetchMovie: function () {
+      axios
+        .get(function (req) {
+        let tab = recommandation(req);
+        let rep = [];
+        for (let i = 0; i < 10; i++) {
+          rep[i] = tab[i];
+          return rep;
+        }
+      })
+      .then(function () {
+        this.movies = 
+      })
+    },
   },
   created: function () {
     //this.fetchMovies();

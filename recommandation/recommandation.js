@@ -13,10 +13,10 @@ function vectorFilm(film) {
     return rep;
 }
 
-function movieType(films) {
-    let n = Object.keys(films).length;
+function movieType(filmsTab) {
+    let n = filmsTab.length;
     let sum = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    for (let film of films) {
+    for (let film of filmsTab) {
         v = vectorFilm(film);
         for (let i in v) {
             sum[i]+=v[i];
