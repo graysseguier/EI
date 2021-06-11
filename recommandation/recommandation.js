@@ -23,7 +23,8 @@ function movieType(filmsTab) {
     }
     for (let j in sum) {
         sum[j] /= n;
-    }
+    };
+    return sum;
 }
 
 function produitScalaire(v1, v2) {
