@@ -33,6 +33,12 @@
           >{{ lang.name }}</router-link
         >
       </DropdownButton>
+      <DropdownButton name="Sort by">
+        <router-link :to="`/?release_date=-1`">Date</router-link>
+        <router-link :to="`/?vote_average=-1`">Average Votes</router-link>
+        <router-link :to="`/?popularity=-1`">Popularity</router-link>
+        <router-link :to="`/?title=-1`">Title</router-link>
+      </DropdownButton>
       <router-link class="nav-link" to="/Add Movie">Add Movie</router-link>
       <router-link class="nav-link" to="/about">About</router-link>
 
