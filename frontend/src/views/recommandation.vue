@@ -27,6 +27,7 @@ export default {
       user: "",
       moviesLoadingError: "",
       usersLoadingError: "",
+      filmsLiked: [],
     };
   },
 
@@ -48,7 +49,9 @@ export default {
     },
     fetchMovies: function () {
       axios
-        .get(function () {})
+        .get(function (user, id) {
+          MovieModel.find({ id: id });
+        })
         .then((response) => {
           this.movies = response.data.results;
           console.log(response);
