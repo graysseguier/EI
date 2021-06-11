@@ -1,8 +1,10 @@
 <template>
   <div class="home">
+    <div class="nomSite">onlineCSinema</div>
     <img
       alt="Vue logo"
-      src="https://filmfaremiddleeast.com/wp-content/uploads/2020/03/movies-to-watch-article-size.jpg"
+      src="https://www.freeiconspng.com/thumbs/popcorn-png/popcorn-png-3.png"
+      width="28%"
     />
     <div class="navbar">
       <router-link class="nav-link" to="/">Home</router-link>
@@ -93,9 +95,12 @@ export default {
 </script>
 
 <style scoped>
+.nomSite {
+  font-family: fantasy;
+  font-size: 60px;
+}
 img {
-  width: 100%;
-  height: 300px;
+  width: 10%;
 }
 .nav {
   text-align: center;
